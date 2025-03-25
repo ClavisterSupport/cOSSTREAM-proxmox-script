@@ -8,5 +8,5 @@ HowTo use:
 1. Enter shell for a node.
 2. Run this command:
    
-   bash -c "$(wget -qLO - https://github.com/ClavisterSupport/cOSCORE-proxmox-script/raw/main/deployStream.sh)"
+   bash -c "$(wget -qLO - https://github.com/ClavisterSupport/cOSTEAM-proxmox-script/raw/main/deployStream.sh)"
 4. Follow the wizard.
