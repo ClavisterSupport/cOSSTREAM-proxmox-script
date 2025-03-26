@@ -135,6 +135,15 @@ create_vm() {
     local vm_name=$2
     echo "Creating VM $vm_name with ID $vm_id..."
     qm create $vm_id --name "$vm_name" --memory $RAM_SIZE --cores $CPU_CORES --net0 virtio,bridge=$BRIDGE
+    for i in $(seq 1 $((INTERFACE_COUNT - 1))); do
+        if [[ "$DEPLOY_MODE" == "2" && "$i" == "1" ]]; then
+            qm set "$vm_id" --net$i virtio,bridge="$SYNC_BRIDGE"
+        else
+            qm set "$vm_id" --net$i virtio,bridge="$BRIDGE"
+        fi
+    done
+
+    
     if [ "$FIREWALL_TYPE" == "1" ]; then
         convert_ova "$vm_id"
     else
